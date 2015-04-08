@@ -1,0 +1,18 @@
+div.col-md-3
+	div.box.box-solid.box-success
+		div.box-header
+			h3.box-title Sent by - #{messages[i].name}
+			div.box-tools.pull-right
+				a(href="/ownerhome/" + messages[i].listId)
+					button.btn.btn-flat.btn-sm.btn-info(style="font-size: 12px;") Go to list
+				a(href="/deletemessage/" + messages[i]._id)
+					button.btn.btn-success.btn-sm
+						i.fa.fa-times
+		div.box-body
+			i - #{messages[i].email}
+			br
+			if messages[i].contactNo !== ''
+				i - #{messages[i].contactNo}
+				br
+			br
+			b #{messages[i].message}

@@ -1,0 +1,166 @@
+if isOwner === true || isStudent === true
+	include userhomelayout.jade
+else
+	include indexlayout.jade
+
+link(rel='stylesheet', href='/stylesheets/viewlist.css')
+link(rel='stylesheet', href='/stylesheets/stripe.css')
+
+div.wrapper.row-offcanvas.row-offcanvas-left.skin-black(style="min-height: 617px;")
+
+	if isOwner === false
+		include sidebar.jade
+
+	aside.right-side
+		if isStudent === true
+			div.margin-top-20(style="margin-left: 20px;")
+				if isFav === true
+					a.favourite-link(href="#")
+						i.fa.fa-2x.fa-star
+				else
+					a.favourite-link(href="#")
+						i.fa.fa-2x.fa-star-o
+
+		div.col-md-3.text-center.type-stripe-big.z-index-1(style="border-bottom: 30px solid #22A7F0; color:#000") FLAT
+
+		div.col-md-12
+			div.row.list-header.col-md-12.text-center.z-index-2
+				h2 #{list.title}
+					if isOwner === true
+						a(href="#", data-toggle="modal" data-target="#edit-title")
+							i.edit-field  edit
+				i.fa.fa-fw.fa-map-marker
+				|  #{list.address}
+				if isOwner === true
+					a(href="#", data-toggle="modal" data-target="#edit-address")
+						i.edit-field  edit
+				p #{list.localityName}
+					if isOwner === true
+						a(href="#", data-toggle="modal" data-target="#edit-locality")
+							i.edit-field  edit
+
+			div.col-md-3
+			div.col-md-7(style="border-bottom:3px solid #eee; padding-bottom:10px;")
+
+			div.list-body.col-md-12.margin-top-20
+				div.row.text-center
+					div.col-md-3
+						div.list-item-head RENT
+						div.list-item-body
+							i.fa.fa-fw.fa-inr
+							| #{list.rent[0].rent} #{list.rent[0].rentType}
+							if isOwner === true
+								a(href="#", data-toggle="modal" data-target="#edit-rent")
+									i.edit-field  edit
+					div.col-md-2
+						div.list-item-head DEPOSIT
+						div.list-item-body
+							i.fa.fa-fw.fa-inr
+							| #{list.deposit}
+							if isOwner === true
+								a(href="#", data-toggle="modal" data-target="#edit-deposit")
+									i.edit-field  edit
+					div.col-md-2
+						div.list-item-head TYPE
+						div.list-item-body
+							| #{list.bhk} BHK
+							if isOwner === true
+								a(href="#", data-toggle="modal" data-target="#edit-bhk")
+									i.edit-field  edit
+					div.col-md-2
+						div.list-item-head GENDER
+						div.list-item-body
+							| #{list.gender}
+							if isOwner === true
+								a(href="#", data-toggle="modal" data-target="#edit-gender")
+									i.edit-field  edit
+					div.col-md-3
+						div.list-item-head AVAILABLE
+						div.list-item-body
+							if list.availability == 1
+								| Yes
+							else
+								| No
+							if isOwner === true
+								a(href="#", data-toggle="modal" data-target="#edit-availability")
+									i.edit-field  edit
+				div.col-md-7.margin-top-20
+					div#list-image-carousel.carousel.slide(data-ride="carousel", style="height:370px;")
+						ol.carousel-indicators
+							li.active(data-target="#list-image-carousel", data-slide-to="0")
+							li(data-target="#list-image-carousel", data-slide-to="1")
+							li(data-target="#list-image-carousel", data-slide-to="2")
+						div.carousel-inner
+							div.item.active
+								img.margin-0-auto.image-resize-viewlist(src=list.image[0])
+							-for (var i=1 ; i<list.image.length ; ++i) { 
+								div.item
+									img.margin-0-auto.image-resize-viewlist(src=list.image[i])
+							-}
+						a.left.carousel-control(href="#list-image-carousel", data-slide="prev")
+							span.glyphicon.glyphicon-chevron-left
+						a.right.carousel-control(href="#list-image-carousel", data-slide="next")
+							span.glyphicon.glyphicon-chevron-right
+				if isOwner === false
+					div.col-md-5.margin-top-20
+						div.col-md-12(style="background-color:#eee; padding:15px;")
+							b(style="font-size:25px;") Contact the owner
+							form.form-horizontal.margin-top-20(role="form" method="post" action="/sendmessage")
+								div.form-group
+									label.col-md-2.control-label Name
+									div.col-md-10
+										input.form-control(type="text" placeholder="Your name here" name="name" required)
+								div.form-group
+									label.col-md-2.control-label Email
+									div.col-md-10
+										input.form-control(type="email" placeholder="A way to contact you" name="email" required)
+								div.form-group
+									label.col-md-2.control-label Contact No.
+									div.col-md-10
+										input.form-control(type="number" placeholder="(Optional)" name="contactNo" min="7000000000" maxlength="10")
+								div.form-group
+									label.col-md-2.control-label Your message
+									div.col-md-10
+										textarea.form-control(rows="3", maxlength="200", placeholder="(max characters: 200)" name="message" required)
+								button.btn.btn-flat.btn-success(type="submit") Send message
+
+				div.row.col-md-12.margin-top-20
+					div.col-md-6.pull-left(style="background-color:#eee; padding:20px;")
+						b(style="font-size:25px;") Description
+						if isOwner === true
+							a(href="#", data-toggle="modal" data-target="#edit-description")
+								i.edit-field  edit
+						p
+							i #{list.furnishing}
+						p
+							b #{list.noBathroom}
+							|  Bathroom(s)
+							if list.attachedBathroom === '1'
+								|  - attached
+							else
+								|  - not attached
+						if list.floor
+							p Floor -
+								b  #{list.floor}
+						p #{list.description}
+						each amenity in list.amenities
+							div.pull-left(style="margin-right: 10px;")
+								i.glyphicon.glyphicon-ok #{amenity}
+					div.col-md-3.pull-right.text-center(style="background-color:#eee; padding:20px;")
+						b(style="font-size:25px;") Owner info
+							div.col-md-12
+								i(style="font-size:16px;") #{user.firstName} #{user.lastName}
+						div.col-md-12
+							i.fa.fa-fw.fa-phone
+							|  #{user.contactNo} 
+						div.col-md-12
+							i.fa.fa-fw.fa-envelope
+							|  #{user.email}
+
+<script> listId = '#{list._id}'; </script>
+<script src="/javascripts/viewlist.js"></script>
+<script src="/javascripts/ownerhome.js"></script>
+
+include editfieldform.jade
+
+include footer.jade

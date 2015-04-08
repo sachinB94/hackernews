@@ -1,0 +1,79 @@
+div.col-md-5.pull-left
+	h3 Add listing
+	h6
+		i ...Got a place for us...
+	form.form-horizontal(role="form", method="post", action="/listbytype")
+		div.form-group
+			label.col-md-2.control-label List a
+			div.col-md-10
+				label.radio-inline
+					input(type="radio", name="type", value="flat" checked)
+					|   Flat
+				label.radio-inline
+					input(type="radio", name="type", value="hostel")
+					|   Hostel
+				label.radio-inline
+					input(type="radio", name="type", value="pg")
+					|   P.G.
+		div.form-group
+			label.col-md-2.control-label Title*
+			div.col-md-10
+				input.form-control(type="text", name="title", placeholder="An awesome title here", maxlength="25" required)
+		div.form-group
+			label.col-md-2.control-label Address*
+			div.col-md-10
+				input.form-control(type="text", placeholder="Address", name="address", maxlength="25" required)
+		div.form-group
+			label.col-md-2.control-label Locality*
+			div.col-md-10
+				select.form-control(name="locality" required)
+					each location in locality
+						option(value= "#{location._id}")= location['name']
+		div.form-group
+			label.col-md-2.control-label Deposit*
+			div.col-md-10
+				input.form-control(type="number", placeholder="Deposit", name="deposit", min="0", maxlength="6" required)
+		div.form-group
+			label.col-md-2.control-label Gender*
+			div.col-md-10
+				label.radio-inline
+					input(type="radio", name="gender", value="male")
+					|  Male
+				label.radio-inline
+					input(type="radio", name="gender", value="female")
+					|  Female
+				label.radio-inline
+					input(type="radio", name="gender", value="both" checked)
+					| Both
+		div.form-group
+			label.col-md-2.control-label Furnishing*
+			div.col-md-10
+				label.radio-inline
+					input(type="radio", name="furnishing", value="furnished" checked)
+					|  furnished
+				label.radio-inline
+					input(type="radio", name="furnishing", value="semi-furnished")
+					|  semi-furnished
+				label.radio-inline
+					input(type="radio", name="furnishing", value="unfurnished")
+					|  unfurnished
+		div.form-group
+			label.col-md-2.control-label Amenities
+			div.col-md-10
+				label.checkbox-inline
+					input(type="checkbox", name="amenities", value="bed")
+					|  bed
+				label.checkbox-inline
+					input(type="checkbox", name="amenities", value="refrigerator")
+					|  refrigerator
+				label.checkbox-inline
+					input(type="checkbox", name="amenities", value="parking")
+					|  parking
+				label.checkbox-inline
+					input(type="checkbox", name="amenities", value="gas")
+					|  gas
+				label.checkbox-inline
+					input(type="checkbox", name="amenities", value="tv")
+					|  TV
+
+		button.btn.btn-success.btn-flat.pull-right(type="submit") Next

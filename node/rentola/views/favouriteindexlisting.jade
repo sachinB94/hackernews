@@ -1,0 +1,45 @@
+link(rel='stylesheet', href='/stylesheets/stripe.css')
+
+if lists.length === 0
+	div.no-favourite-message You currently have no favourites
+else
+	each list in lists
+		a(href="/list/" + list['_id'])
+			div.col-sm-4.col-md-3.pull-left
+				div.thumbnail(id="#{list._id}")
+					p.favourite-link
+						i.fa.fa-lg.fa-star
+					if list.type === 'flat'
+						div.col-md-5.text-center.type-stripe-small(style="border-bottom: 20px solid #22A7F0; color:#000") FLAT
+					else if list.type === 'pg'
+						div.col-md-5.text-center.type-stripe-small(style="border-bottom: 20px solid #26A65B; color:#000") PG
+					else
+						div.col-md-5.text-center.type-stripe-small(style="border-bottom: 20px solid #F9690E; color:#000") HOSTEL
+					div.margin-0-auto.thumbnail-image-size
+						img.img-rounded.image-resize-box(src=list.image[0])
+					div.caption
+						h3.text-center #{list['title']}
+							if list['availability'] === '1'
+								i(style="color:#8CC152;font-size:10px")  available
+							else
+								i(style="color:#8CC152;font-size:10px")  not available
+						p 
+							i Rent:
+							-if (list.type == 'flat') {
+								|  Rs #{list.rent[0].rent} #{list.rentType[0].rentType}
+							-} else {
+								-var min = isNaN(list.rent[0].rent)? 999999 : list.rent[0].rent;
+								-var max = isNaN(list.rent[0].rent)? 0 : list.rent[0].rent;
+								-list.rent.forEach(function (rent) {
+								-	if (rent.rent<min) min = rent.rent;
+								-	if (rent.rent>max) max = rent.rent;
+								-});
+								|  Rs #{min} - #{max}
+							-}
+						p
+							i Address:
+							|  #{list['address']}
+
+<script type="text/javascript"> student = #{isStudent}; </script>
+
+<script type="text/javascript" src="/javascripts/studenthome.js"></script>

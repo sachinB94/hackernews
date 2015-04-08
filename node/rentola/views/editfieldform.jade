@@ -1,0 +1,366 @@
+div#edit-title.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-title-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-title-label.modal-title Edit title
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-sm-2.control-label Title
+						div.col-md-10
+							input.form-control(type="text", placeholder="Title", name="title", value=list['title'] required)
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-address.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-address-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-address-label.modal-title Edit address
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-sm-2.control-label  Address
+						div.col-md-10
+							input.form-control(type="text", placeholder="Address", name="address", value=list['address'] required)
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-locality.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-locality-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit--label.modal-title Edit Locality
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-md-2.control-label Locality
+						div.col-md-10
+							select.form-control(name="locality" required)
+								each location in locality
+									if location._id == list.locality
+										option(value= "#{location._id}" selected)= location['name']
+									else
+										option(value= "#{location._id}")= location['name']
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-rent.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-rent-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-rent-label.modal-title Edit rent
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					if list.type === 'flat'
+						div.form-group
+							label.col-md-2.control-label Rent*
+							div.col-md-4
+								input.form-control(type="number", placeholder="Rent", name="rent0", value=list.rent[0].rent, min="0" required)
+							div.col-md-6
+								if list.rent[0].rentType === 'yearly'
+									label.radio-inline
+										input(type="radio", name="rentType0", value="yearly" checked)
+										|  Yearly
+									label.radio-inline
+										input(type="radio", name="rentType0", value="monthly")
+										|  Monthly
+								else
+									label.radio-inline
+										input(type="radio", name="rentType0", value="yearly")
+										|  Yearly
+									label.radio-inline
+										input(type="radio", name="rentType0", value="monthly" checked)
+										|  Monthly
+					else
+						div.form-group
+							label.col-md-2.control-label Type*
+							-for (var i=1 ; i<=6 ; ++i) {
+								div.col-md-3
+									label.checkbox-inline 
+									input(type="checkbox", value='seater#{i}')
+									|  #{i} seater
+							-}
+						-for (var i=1 ; i<=6 ; ++i) {
+							div.form-group.display-none(class="seater#{i}")
+								label.col-md-2.control-label Rent (#{i} seater)*
+								div.col-md-4
+									input.form-control.input(type="number", placeholder="Rent(Rs.)", name="rent#{i}", min="0")
+								div.col-md-6
+									label.radio-inline
+										input(type="radio", name="rentType#{i}", value="yearly" checked)
+										|  Yearly
+									label.radio-inline
+										input(type="radio", name="rentType#{i}", value="monthly")
+										|  Monthly
+						-}
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-ac.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-ac-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-ac-label.modal-title Edit AC
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-md-2.control-label Type*
+						-for (var i=1 ; i<=6 ; ++i) {
+							div.col-md-3
+								label.checkbox-inline 
+								input(type="checkbox", value='seater#{i}')
+								|  #{i} seater
+						-}
+					-for (var i=1 ; i<=6 ; ++i) {
+						div.form-group.display-none(class="seater#{i}")
+							label.col-md-2.control-label AC (#{i} seater)
+							div.col-md-10
+								label.radio-inline
+									input(type="radio", name="ac#{i}", value="1" checked)
+									|  Yes
+								label.radio-inline
+									input(type="radio", name="ac#{i}", value="0")
+									|  No
+					-}
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-deposit.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-deposit-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-deposit-label.modal-title Edit deposit
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-md-2.control-label Deposit
+						div.col-md-10
+							input.form-control(type="number", placeholder="Deposit", name="deposit", value=list['deposit'] min="0" required)
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-bhk.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-bhk-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-bhk-label.modal-title Edit type
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-md-2.control-label Type
+						div.col-md-10
+							select.form-control(name="bhk" required)
+								- for (var i=1 ; i<=6 ; ++i) {
+									if i == list.bhk
+										option(value= i selected) #{i} BHK
+									else
+										option(value= i) #{i} BHK
+								- }
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-gender.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-gender-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-gender-label.modal-title Edit gender
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-md-2.control-label Gender
+						div.col-md-6
+							if list.gender === 'male'
+								label.radio-inline
+									input(type="radio", name="gender", value="male" checked)
+									|  Male
+								label.radio-inline
+									input(type="radio", name="gender", value="female")
+									|  Female
+								label.radio-inline
+									input(type="radio", name="gender", value="both")
+									| Both
+							else if list.gender === 'female'
+								label.radio-inline
+									input(type="radio", name="gender", value="male")
+									|  Male
+								label.radio-inline
+									input(type="radio", name="gender", value="female" checked)
+									|  Female
+								label.radio-inline
+									input(type="radio", name="gender", value="both")
+									| Both
+							else
+								label.radio-inline
+									input(type="radio", name="gender", value="male")
+									|  Male
+								label.radio-inline
+									input(type="radio", name="gender", value="female")
+									|  Female
+								label.radio-inline
+									input(type="radio", name="gender", value="both" checked)
+									| Both
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-description.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-description-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-description-label.modal-title Edit description
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-md-2.control-label Furnishing
+						div.col-md-10
+							if list.furnishing == 'furnished'
+								label.radio-inline
+									input(type="radio", name="furnishing", value="furnished" checked)
+									|  furnished
+								label.radio-inline
+									input(type="radio", name="furnishing", value="semi-furnished")
+									|  semi-furnished
+								label.radio-inline
+									input(type="radio", name="furnishing", value="unfurnished")
+									|  unfurnished
+							else if list.furnishing == 'semi-furnished'
+								label.radio-inline
+									input(type="radio", name="furnishing", value="furnished" checked)
+									|  furnished
+								label.radio-inline
+									input(type="radio", name="furnishing", value="semi-furnished" checked)
+									|  semi-furnished
+								label.radio-inline
+									input(type="radio", name="furnishing", value="unfurnished")
+									|  unfurnished
+							else
+								label.radio-inline
+									input(type="radio", name="furnishing", value="furnished" checked)
+									|  furnished
+								label.radio-inline
+									input(type="radio", name="furnishing", value="semi-furnished")
+									|  semi-furnished
+								label.radio-inline
+									input(type="radio", name="furnishing", value="unfurnished" checked)
+									|  unfurnished
+					div.form-group
+						label.col-md-2.control-label Bathrooms
+						div.col-md-7
+							input.form-control(type="number", placeholder="Number of Bathrooms", name="noBathroom", value=list.noBathroom, min="0" required)
+						div.col-md-3
+							label.checkbox-inline
+							if list['attachedBathroom'] == 1
+								input(type="checkbox", name="attachedBathroom", value='1' checked)
+							else
+								input(type="checkbox", name="attachedBathroom", value='1')
+							|  Attached
+					div.form-group
+						label.col-md-2.control-label Floor
+						div.col-md-10
+							input.form-control(type="number", placeholder="(Ground = 0)", name="floor", value=list['floor'], min="0")
+					div.form-group
+						label.col-md-2.control-label Amenities
+						div.col-md-10
+							label.checkbox-inline
+								if list.amenities.indexOf('bed') != -1
+									input(type="checkbox", name="amenities", value="bed" checked)
+								else
+									input(type="checkbox", name="amenities", value="bed")
+								|  bed
+							label.checkbox-inline
+								if list.amenities.indexOf('refrigerator') != -1
+									input(type="checkbox", name="amenities", value="refrigerator" checked)
+								else
+									input(type="checkbox", name="amenities", value="refrigerator")
+								|  refrigerator
+							label.checkbox-inline
+								if list.amenities.indexOf('parking') != -1
+									input(type="checkbox", name="amenities", value="parking" checked)
+								else
+									input(type="checkbox", name="amenities", value="parking")
+								|  parking
+							label.checkbox-inline
+								if list.amenities.indexOf('gas') != -1
+									input(type="checkbox", name="amenities", value="gas" checked)
+								else
+									input(type="checkbox", name="amenities", value="gas")
+								|  gas
+							label.checkbox-inline
+								if list.amenities.indexOf('tv') != -1
+									input(type="checkbox", name="amenities", value="tv" checked)
+								else
+									input(type="checkbox", name="amenities", value="tv")
+								|  TV
+					div.form-group
+						label.col-md-2.control-label Description
+						div.col-md-10
+							textarea.form-control(rows="3", maxlength="200", placeholder="(max characters: 200)", name="description") #{list.description}
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit
+
+div#edit-availability.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-availability-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#edit-availability-label.modal-title Edit availability
+			div.modal-body
+				form.form-horizontal(method="post", action="/editlist")
+					div.form-group
+						label.col-sm-2.control-label Available?
+						div.col-md-10
+							if list.availability === '1'
+								label.radio-inline
+									input(type="radio", name="availability", value="1" checked)
+									|  Yes
+								label.radio-inline
+									input(type="radio", name="availability", value="0")
+									|  No
+							else
+								label.radio-inline
+									input(type="radio", name="availability", value="1")
+									|  Yes
+								label.radio-inline
+									input(type="radio", name="availability", value="0" checked)
+									|  No
+					div.modal-footer
+						button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+						button.btn.btn-success.btn-flat(type="submit") Submit

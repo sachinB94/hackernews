@@ -1,0 +1,62 @@
+include userhomelayout.jade
+	
+div.col-md-5(style="margin-bottom:60px;")
+	h3 List a Hostel
+	h6
+		i ...Just a couple more details to go...
+	form.form-horizontal(role="form", method="post", enctype="multipart/form-data", action="/postlisting")
+		div.form-group
+			label.col-md-2.control-label Type*
+			-for (var i=1 ; i<=6 ; ++i) {
+				div.col-md-3
+					label.checkbox-inline 
+					input(type="checkbox", value='seater#{i}')
+					|  #{i} seater
+			-}
+		-for (var i=1 ; i<=6 ; ++i) {
+			div.form-group.display-none(class="seater#{i}")
+				label.col-md-2.control-label Rent (#{i} seater)*
+				div.col-md-4
+					input.form-control(type="number", placeholder="Rent(Rs.)", name="rent#{i}", min="0")
+				div.col-md-6
+					label.radio-inline
+						input(type="radio", name="rentType#{i}", value="yearly" checked)
+						|  Yearly
+					label.radio-inline
+						input(type="radio", name="rentType#{i}", value="monthly")
+						|  Monthly
+			div.form-group.display-none(class="seater#{i}")
+				label.col-md-2.control-label AC (#{i} seater)
+				div.col-md-10
+					label.radio-inline
+						input(type="radio", name="ac#{i}", value="1" checked)
+						|  Yes
+					label.radio-inline
+						input(type="radio", name="ac#{i}", value="0")
+						|  No
+		-}
+		div.form-group
+			label.col-md-2.control-label Bathrooms
+			div.col-md-3
+				label.checkbox-inline 
+				input(type="checkbox", name="attachedBathroom", value='1')
+				|  Attached
+		div.form-group
+			label.col-md-2.control-label Description
+			div.col-md-10
+				textarea.form-control(rows="3", maxlength="200", placeholder="(max characters: 200)" name="description")
+		div.form-group
+			label.col-md-2.control-label Contact*
+			div.col-md-10
+				input.form-control(type="number", placeholder="Contact No.", name="contactNo", min="7000000000", maxlength="10", value=user['contactNo'] required)
+		-for (var i=0 ; i<5 ; ++i) {
+			div.form-group
+				label.col-md-2.control-label Image #{i+1}
+				div.col-md-10
+					input.form-control(type="file", name="image")
+		-}
+		button.btn.btn-success.btn-flat.pull-right(type="submit") Submit
+	a.pull-right(href="ownerhome")
+		button.btn.btn-default.btn-flat Back
+
+<script src='/javascripts/ownerhome.js'></script>

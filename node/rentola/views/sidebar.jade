@@ -1,0 +1,184 @@
+aside.left-side.sidebar-offcanvas(style="min-height: 2577px;")
+	div.slimScrollDiv(style="position: relative; overflow: hidden; width: auto;")
+		section.sidebar(style="overflow: hidden; width: auto;")
+			form.sidebar-form(role="search", action="/searchtitle", method="get")
+				div.input-group
+					input.form-control(type="text", name="searchTerm" placeholder="Search a place")
+					span.input-group-btn
+						button.btn.btn-flat(type="submit")
+							i.fa.fa-search
+			form.sidebar-form(method="get", action="/searchall", style="color:#bbb;")
+				div.form-group
+					label.col-md-12.control-label Searching for
+					div.col-md-12
+						if search.type.indexOf('flat') != -1
+							input.form-control(type="checkbox", name="type", value='flat' checked)
+						else
+							input.form-control(type="checkbox", name="type", value='flat')
+						|  Flat
+					div.col-md-12
+						if search.type.indexOf('pg') != -1
+							input.form-control(type="checkbox", name="type", value='pg' checked)
+						else
+							input.form-control(type="checkbox", name="type", value='pg')
+						|  P.G.
+					div.col-md-12
+						if search.type.indexOf('hostel') != -1
+							input.form-control(type="checkbox", name="type", value='hostel' checked)
+						else
+							input.form-control(type="checkbox", name="type", value='hostel')
+						|  Hostel
+				div.form-group
+					label.col-md-12.control-label Locality
+					each location in locality
+						div.col-md-12
+							if search.locality.indexOf(location._id.toString()) != -1
+								input.form-control(type="checkbox", name="locality", value="#{location._id}" checked)
+							else 
+								input.form-control(type="checkbox", name="locality", value="#{location._id}")
+							|  #{location.name}
+				div.form-group
+					label.col-md-12.control-label Minimum rent
+					div.col-md-12
+						if search.minRent === 0
+							input.form-control(type="number", placeholder="Minimum Rent", min="0", name='minRent')
+						else
+							input.form-control(type="number", placeholder="Minimum Rent", min="0", value="#{search.minRent}", name='minRent')
+				div.form-group
+					label.col-md-12.control-label Maximum rent
+					div.col-md-12
+						if search.maxRent === 99999999
+							input.form-control(type="number", placeholder="Maximum Rent", min="0", name='maxRent')
+						else
+							input.form-control(type="number", placeholder="Maximum Rent", min="0", value="#{search.maxRent}", name='maxRent')
+				div.form-group
+					label.col-md-12.control-label Rent type
+					div
+						label.checkbox-inline
+							if search.rentType.indexOf('yearly') != -1
+								input(type="checkbox", name="rentType", value="yearly" checked)
+							else
+								input(type="checkbox", name="rentType", value="yearly")
+							|  Yearly
+						label.checkbox-inline
+							if search.rentType.indexOf('monthly') != -1
+								input(type="checkbox", name="rentType", value="monthly" checked)
+							else
+								input(type="checkbox", name="rentType", value="monthly")
+							|  Monthly
+				div.form-group
+					label.col-md-12.control-label AC
+					div
+						label.checkbox-inline
+							if search.ac.indexOf('1') != -1
+								input(type="checkbox", name="ac", value="1" checked)
+							else
+								input(type="checkbox", name="ac", value="1")
+							|  AC
+						label.checkbox-inline
+							if search.ac.indexOf('0') != -1
+								input(type="checkbox", name="ac", value="0" checked)
+							else
+								input(type="checkbox", name="ac", value="0")
+							|  Non-AC
+				div.form-group
+					label.col-md-12.control-label Gender
+					div
+						label.checkbox-inline
+							if search.gender.indexOf('male') != -1
+								input(type="checkbox", name="gender", value="male" checked)
+							else
+								input(type="checkbox", name="gender", value="male")
+							|  Male
+						label.checkbox-inline
+							if search.gender.indexOf('female') != -1
+								input(type="checkbox", name="gender", value="female" checked)
+							else
+								input(type="checkbox", name="gender", value="female")
+							|  Female
+				div.form-group
+					label.col-md-12.control-label Furnishing
+					div.col-md-12
+						if search.furnishing.indexOf('furnished') != -1
+							input.form-control(type="checkbox", name="furnishing", value='furnished' checked)
+						else
+							input.form-control(type="checkbox", name="furnishing", value='furnished')
+						|  Furnished
+					div.col-md-12
+						if search.furnishing.indexOf('semi-furnished') != -1
+							input.form-control(type="checkbox", name="furnishing", value='semi-furnished' checked)
+						else
+							input.form-control(type="checkbox", name="furnishing", value='semi-furnished')
+						|  Semi-furnished
+					div.col-md-12
+						if search.furnishing.indexOf('unfurnished') != -1
+							input.form-control(type="checkbox", name="furnishing", value='unfurnished' checked)
+						else
+							input.form-control(type="checkbox", name="furnishing", value='unfurnished')
+						|  Unfurnished
+				div.form-group
+					label.col-md-12.control-label Type
+					- for (var i=1 ; i<=6 ; ++i) {
+						div.col-md-12
+							if search.bhk.indexOf(i) != -1
+								input.form-control(type="checkbox", name="bhk", value=i checked)
+							else
+								input.form-control(type="checkbox", name="bhk", value=i)
+							|  #{i} BHK
+					- }
+				div.form-group
+					label.col-md-12.control-label Seater
+					- for (var i=1 ; i<=6 ; ++i) {
+						div.col-md-12
+							if search.seater.indexOf(i) != -1
+								input.form-control(type="checkbox", name="seater", value=i checked)
+							else
+								input.form-control(type="checkbox", name="seater", value=i)
+							|  #{i} Seater
+					- }
+				div.form-group
+					label.col-md-12.control-label Available
+					div
+						label.checkbox-inline
+							if search.availability.indexOf('1') != -1
+								input(type="checkbox", name="availability", value="1" checked)
+							else
+								input(type="checkbox", name="availability", value="1")
+							|  Yes
+						label.checkbox-inline
+							if search.availability.indexOf('0') != -1
+								input(type="checkbox", name="availability", value="0" checked)
+							else
+								input(type="checkbox", name="availability", value="0")
+							|  No
+				div.form-group
+					label.col-md-12.control-label Floor
+					div.col-md-12
+						if search.floor === '[\\s\\S]*'
+							input.form-control(type="number", placeholder="(Ground = 0)", min="0", name='floor')
+						else
+							input.form-control(type="number", placeholder="(Ground = 0)", min="0", value="#{search.floor}", name='floor')
+				div.form-group
+					label.col-md-12.control-label Number of bathrooms
+					div.col-md-12
+						if search.noBathroom === '[\\s\\S]*'
+							input.form-control(type="number", placeholder="Number of bathrooms", min="0", name='noBathroom')
+						else
+							input.form-control(type="number", placeholder="Number of bathrooms", min="0", value="#{search.noBathroom}", name='noBathroom')
+				div.form-group
+					label.col-md-12.control-label Attached bathroom
+					div
+						label.checkbox-inline
+							if search.attachedBathroom.indexOf('1') != -1
+								input(type="checkbox", name="attachedBathroom", value="1" checked)
+							else
+								input(type="checkbox", name="attachedBathroom", value="1")
+							|  Yes
+						label.checkbox-inline
+							if search.attachedBathroom.indexOf('0') != -1
+								input(type="checkbox", name="attachedBathroom", value="0" checked)
+							else
+								input(type="checkbox", name="attachedBathroom", value="0")
+							|  No
+
+				button.col-md-12.btn.btn-success.btn-flat(type="submit") Filter

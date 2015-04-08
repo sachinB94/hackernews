@@ -1,0 +1,64 @@
+link(rel='stylesheet', href='/stylesheets/stripe.css')
+
+aside.right-side
+
+	if typeof lists === 'undefined'
+		div.no-list-message Sorry no listings found matching your criteria
+	else
+		div.row
+			div.col-md-4.margin-top-20.pull-right
+				form.form-horizontal(method="get", action="/")
+					div.form-group
+						label.col-md-4.control-label Sort by
+						div.col-md-6
+							select.form-control.input-sm(name="sortBy" required)
+								option(value=1) Alphabetically
+								option(value=2) Rent (Low to High)
+								option(value=3) Rent (High to Low)
+						button.btn.btn-sm.btn-flat.btn-success(type="submit") Go
+
+		section.content
+			each list in lists
+				a(href="/list/" + list['_id'])
+					div.col-sm-6.col-md-3
+						div.thumbnail(id="#{list._id}")
+							if favourites.indexOf(list._id.toString()) != -1
+								p.favourite-link(href="#")
+									i.fa.fa-lg.fa-star
+							else
+								p.favourite-link(href="#")
+									i.fa.fa-lg.fa-star-o
+							if list.type === 'flat'
+								div.col-md-5.text-center.type-stripe-small(style="border-bottom: 20px solid #22A7F0; color:#000") FLAT
+							else if list.type === 'pg'
+								div.col-md-5.text-center.type-stripe-small(style="border-bottom: 20px solid #26A65B; color:#000") PG
+							else
+								div.col-md-5.text-center.type-stripe-small(style="border-bottom: 20px solid #F9690E; color:#000") HOSTEL
+							div.margin-0-auto.thumbnail-image-size
+								img.img-rounded.image-resize-box(src=list.image[0])
+							div.caption
+								h3.text-center #{list['title']}
+									if list['availability'] === '1'
+										i(style="color:#8CC152;font-size:10px")  available
+									else
+										i(style="color:#8CC152;font-size:10px")  not available
+								p 
+									i Rent:
+									-if (list.type == 'flat') {
+										|  Rs #{list.rent[0].rent} #{list.rent[0].rentType}
+									-} else {
+										-var min = isNaN(list.rent[0].rent)? 999999 : list.rent[0].rent;
+										-var max = isNaN(list.rent[0].rent)? 0 : list.rent[0].rent;
+										-list.rent.forEach(function (rent) {
+										-	if (rent.rent<min) min = rent.rent;
+										-	if (rent.rent>max) max = rent.rent;
+										-});
+										|  Rs #{min} - #{max}
+									-}
+								p
+									i Address:
+									|  #{list['address']}
+
+<script type="text/javascript"> student = #{isStudent}; </script>
+
+<script type="text/javascript" src="/javascripts/index.js"></script>

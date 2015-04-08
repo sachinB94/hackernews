@@ -1,0 +1,160 @@
+if isStudent === false
+	include indexlayout.jade
+else
+	include userhomelayout.jade
+
+link(rel='stylesheet', href='/stylesheets/index.css')
+
+div.wrapper.row-offcanvas.row-offcanvas-left.skin-black(style="min-height: 617px;")
+	
+	include sidebar.jade
+
+	include indexlisting.jade
+
+include footer.jade
+
+
+
+
+
+
+
+
+
+
+//- extends indexlayout
+
+//- block indexcontent
+//- 	div.wrapper.row-offcanvas.row-offcanvas-left.skin-black(style="min-height: 617px;")
+//- 		aside.left-side.sidebar-offcanvas(style="min-height: 2577px;")
+//- 			div.slimScrollDiv(style="position: relative; overflow: hidden; width: auto;")
+//- 				section.sidebar(style="overflow: hidden; width: auto;")
+//- 					form.sidebar-form(role="search", action="/searchtitle", method="post")
+//- 						form(role="search", action="/searchtitle", method="post")
+//- 							div.input-group
+//- 								input.form-control(type="text", name="searchTerm" placeholder="Search a place")
+//- 								span.input-group-btn
+//- 									button.btn.btn-flat(type="submit")
+//- 										i.fa.fa-search
+//- 					form.sidebar-form(method="post", action="/searchall", style="color:#bbb;")
+//- 						div.form-group
+//- 							label.col-md-12.control-label Searching for
+//- 							div.col-md-12
+//- 								if search.indexOf('flat')
+//- 									input.form-control(type="checkbox", name="type", value='flat' checked)
+//- 								else
+//- 									input.form-control(type="checkbox", name="type", value='flat')
+//- 								|  Flat
+//- 							div.col-md-12
+//- 								if search.indexOf('pg')
+//- 									input.form-control(type="checkbox", name="type", value='pg' checked)
+//- 								else
+//- 									input.form-control(type="checkbox", name="type", value='pg')
+//- 								|  P.G.
+//- 							div.col-md-12
+//- 								if search
+//- 								input.form-control(type="checkbox", name="type", value='hostel' checked)
+//- 								|  Hostel
+//- 						div.form-group
+//- 							label.col-md-12.control-label Locality
+//- 							each location in locality
+//- 								div.col-md-12
+//- 									input.form-control(type="checkbox", name="locality", value="#{location._id}" checked)
+//- 									|  #{location.name}
+//- 						div.form-group
+//- 							label.col-md-12.control-label Minimum rent
+//- 							div.col-md-12
+//- 								input.form-control(type="number", placeholder="Minimum Rent", min="0", name='minRent')
+//- 						div.form-group
+//- 							label.col-md-12.control-label Maximum rent
+//- 							div.col-md-12
+//- 								input.form-control(type="number", placeholder="Maximum Rent", min="0", name='maxRent')
+//- 						div.form-group
+//- 							label.col-md-12.control-label Rent type
+//- 							div
+//- 								label.checkbox-inline
+//- 									input(type="checkbox", name="rentType", value="yearly" checked)
+//- 									|  Yearly
+//- 								label.checkbox-inline
+//- 									input(type="checkbox", name="rentType", value="monthly" checked)
+//- 									|  Monthly
+//- 						div.form-group
+//- 							label.col-md-12.control-label Furnishing
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="furnishing", value='furnished' checked)
+//- 								|  Furnished
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="furnishing", value='semi-furnished' checked)
+//- 								|  Semi-furnished
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="furnishing", value='unfurnished' checked)
+//- 								|  Unfurnished
+//- 						div.form-group
+//- 							label.col-md-12.control-label Type
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="bhk", value="1" checked)
+//- 								|  1 BHK
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="bhk", value="2" checked)
+//- 								|  2 BHK
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="bhk", value="3" checked)
+//- 								|  3 BHK
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="bhk", value="4" checked)
+//- 								|  4 BHK
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="bhk", value="5" checked)
+//- 								|  5 BHK
+//- 							div.col-md-12
+//- 								input.form-control(type="checkbox", name="bhk", value="6" checked)
+//- 								|  6 BHK
+//- 						div.form-group
+//- 							label.col-md-12.control-label Available
+//- 							div
+//- 								label.checkbox-inline
+//- 									input(type="checkbox", name="availability", value="1" checked)
+//- 									|  Yes
+//- 								label.checkbox-inline
+//- 									input(type="checkbox", name="availability", value="0" checked)
+//- 									|  No
+//- 						div.form-group
+//- 							label.col-md-12.control-label Floor
+//- 							div.col-md-12
+//- 								input.form-control(type="number", placeholder="(Ground = 0)", min="0", name='floor')
+//- 						div.form-group
+//- 							label.col-md-12.control-label Number of bathrooms
+//- 							div.col-md-12
+//- 								input.form-control(type="number", placeholder="Number of bathrooms", min="0", name='noBathroom')
+//- 						div.form-group
+//- 							label.col-md-12.control-label Attached bathroom
+//- 							div
+//- 								label.checkbox-inline
+//- 									input(type="checkbox", name="attachedBathroom", value="1" checked)
+//- 									|  Yes
+//- 								label.checkbox-inline
+//- 									input(type="checkbox", name="attachedBathroom", value="0" checked)
+//- 									|  No
+
+//- 						button.col-md-12.btn.btn-success.btn-flat(type="submit") Filter
+
+//- 		aside.right-side
+//- 			section.content
+//- 				each list in lists
+//- 					a(href="/list/" + list.type + "/" + list['_id'])
+//- 						div.col-sm-6.col-md-3
+//- 							div.thumbnail
+//- 								div.margin-0-auto.thumbnail-image-size
+//- 									img.img-rounded(src=list['image1'])
+//- 								div.caption
+//- 									h3.text-center #{list['title']}
+//- 										if list['availability'] === '1'
+//- 											i(style="color:#8CC152;font-size:10px")  available
+//- 										else
+//- 											i(style="color:#8CC152;font-size:10px")  not available
+//- 									p 
+//- 										i Rent:
+//- 										|  Rs #{list['rent']} #{list['rentType']}
+//- 									p
+//- 										i Address:
+//- 										|  #{list['address']}

@@ -1,0 +1,39 @@
+/*.footer-icon {
+	position: fixed;
+	top: 250px;
+	right: 0;
+	padding: 10px;
+	border-radius: 10px 0  0 0;
+	background-color: #aaa;
+	color: #000;
+}
+
+.display-none {
+	display: none;
+}
+
+.display-block {
+	display: block;
+}
+
+.footer-block {
+	position: fixed;
+	top: 290px;
+	right: 0;
+	padding: 10px;
+	width: 150px;
+	background-color: #ccc;
+	border-radius: 10px 0  0 10px;
+}
+*/
+.footer-block {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	padding-top: 10px;
+	background-color: #333;
+	border-radius: 10px 0 0 0;
+}
+.footer-link {
+	color: #aaa;
+}

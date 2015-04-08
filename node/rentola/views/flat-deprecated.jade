@@ -1,0 +1,77 @@
+extends indexlayout
+
+block indexcontent
+
+	div.col-md-3.text-center.type-stripe-big(style="border-bottom: 40px solid #22A7F0; color:#000") FLAT
+
+	div.col-md-12
+		div.row.list-header.col-md-12.text-center
+			h2 #{list.title}
+			i.fa.fa-fw.fa-map-marker
+			|  #{list.address}, #{list.localityName}
+
+		hr.col-md-6(style="height:2px; border:none; color:#ccc; background-color:#ccc; margin-left:25%;")
+
+		div.list-body.col-md-12.margin-top-20
+			div.row.text-center
+				div.col-md-4
+					div.list-item-head RENT
+					div.list-item-body
+						i.fa.fa-fw.fa-inr
+						| #{list.rent} #{list.rentType}
+				div.col-md-4
+					div.list-item-head TYPE
+					div.list-item-body
+						p #{list.bhk} BHK
+				div.col-md-4
+					div.list-item-head AVAILABLE
+					div.list-item-body
+							if list.availability == 1
+								p Yes
+							else
+								p No
+			div.row.margin-top-20
+				div.col-md-7
+					div#list-image-carousel.carousel.slide(data-ride="carousel", style="height:370px;")
+						ol.carousel-indicators
+							li.active(data-target="#list-image-carousel", data-slide-to="0")
+							li(data-target="#list-image-carousel", data-slide-to="1")
+							li(data-target="#list-image-carousel", data-slide-to="2")
+						div.carousel-inner
+							div.item.active
+								img.margin-0-auto(src= list['image1'])
+							if list.image2 != ''
+								div.item
+									img.margin-0-auto(src= list['image2'])
+							if list.image3 != ''
+								div.item
+									img.margin-0-auto(src= list['image3'])
+						a.left.carousel-control(href="#list-image-carousel", data-slide="prev")
+							span.glyphicon.glyphicon-chevron-left
+						a.right.carousel-control(href="#list-image-carousel", data-slide="next")
+							span.glyphicon.glyphicon-chevron-right
+				div.col-md-3.text-center
+					div.col-md-12(style="background-color:#eee; padding:20px;")
+						b(style="font-size:25px;") Description
+						p
+							i #{list.furnishing}
+						p
+							b #{list.noBathroom}
+							|  Bathroom(s)
+							if list.attachedBathroom === '1'
+								|  - attached
+							else
+								|  - not attached
+						p Floor -
+							b  #{list.floor}
+						p #{list.description}
+					div.col-md-12.margin-top-20(style="background-color:#eee; padding:20px;")
+						b(style="font-size:25px;") Listed by
+						div.col-md-12
+							i(style="font-size:16px;") #{owner.firstName} #{owner.lastName}
+						div.col-md-12
+							i.fa.fa-fw.fa-phone
+							|  #{owner.contactNo} 
+						div.col-md-12
+							i.fa.fa-fw.fa-envelope
+							|  #{owner.email}

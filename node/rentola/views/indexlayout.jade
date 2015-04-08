@@ -1,0 +1,158 @@
+include layout
+
+div.row
+	div.col-md-12
+		nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+			div.container-fluid
+				div.navbar-header
+					button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-collapse")
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="/") Rentola
+					button.navbar-toggle(role="button", data-toggle="offcanvas")
+						i.fa.fa-search
+				div.collapse.navbar-collapse#navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/")
+								button.btn.btn-success.btn-flat.btn-sm Home
+						li.dropdown
+							a.dropdown-toggle(href="#", data-toggle="dropdown")
+								button.btn.btn-info.btn-flat.btn-sm Add listing  
+									b.caret
+							ul.dropdown-menu(role="menu")
+								li.dropdown-header Want to list a flat?
+								li
+									a(href="#", data-toggle="modal" data-target="#login-form") Login
+								li
+									a(href="#", data-toggle="modal" data-target="#register-form") Register
+						li.dropdown
+							a.dropdown-toggle(href="#", data-toggle="dropdown")
+								button.btn.btn-flat.btn-sm.bg-orange Student
+									b.caret
+							ul.dropdown-menu(role="menu")
+								li
+									a(href="#", data-toggle="modal" data-target="#student-login-form") Login
+								li
+									a(href="#", data-toggle="modal" data-target="#student-register-form") Register
+					form.navbar-form.navbar-right(role="search", method="get", action="/searchanything")
+						div.form-search.search-only
+							i.search-icon.glyphicon.glyphicon-search
+							if search.searchAnything === ''
+								input.form-control.search-query(type="text", name="searchTerm", placeholder="Search anything here")
+							else
+								input.form-control.search-query(type="text", name="searchTerm", value=search.searchAnything, placeholder="Search anything here")
+	
+	div#login-form.modal.fade(tabindex="-1", role="dialog", aria-labelledby="login-form-label", aria-hidden="true")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+					h4#login-form-label.modal-title Sign In
+				div.modal-body
+					form.form-horizontal(method="post", action="/login")
+						div.form-group
+							label.col-sm-2.control-label Email
+							div.col-md-10
+								input.form-control(type="email", placeholder="Email", name="email" required)
+						div.form-group
+							label.col-sm-2.control-label Password
+							div.col-md-10
+								input.form-control(type="password", placeholder="Password", name="password" required)
+						div.modal-footer
+							button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+							button.btn.btn-success.btn-flat(type="submit") Sign In
+
+	div#register-form.modal.fade(tabindex="-1", role="dialog", aria-labelledby="register-form-label", aria-hidden="true")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+					h4#register-form-label.modal-title Register New Membership
+				div.modal-body
+					form.form-horizontal(method="post", action="/register")
+						div.form-group
+							label.col-sm-2.control-label First name
+							div.col-md-10
+								input.form-control(type="text", placeholder="First name", name="firstName" required)
+						div.form-group
+							label.col-sm-2.control-label Last name
+							div.col-md-10
+								input.form-control(type="text", placeholder="Last name", name="lastName" required)
+						div.form-group
+							label.col-sm-2.control-label Email
+							div.col-md-10
+								input.form-control(type="email", placeholder="Email", name="email" required)
+						div.form-group
+							label.col-sm-2.control-label Contact no.
+							div.col-md-10
+								input.form-control(type="number", placeholder="Contact no.", name="contactNo", maxlength="10", min="7000000000" required)
+						div.form-group
+							label.col-sm-2.control-label Password
+							div.col-md-10
+								input.form-control(type="password", placeholder="Password", name="password" required)
+						div.modal-footer
+							button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+							button.btn.btn-success.btn-flat(type="submit") Sign me up
+
+	div#student-login-form.modal.fade(tabindex="-1", role="dialog", aria-labelledby="student-login-form-label", aria-hidden="true")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+					h4#student-login-form-label.modal-title Sign In
+				div.modal-body
+					form.form-horizontal(method="post", action="/studentlogin")
+						div.form-group
+							label.col-sm-2.control-label Email
+							div.col-md-10
+								input.form-control(type="email", placeholder="Email", name="email" required)
+						div.form-group
+							label.col-sm-2.control-label Password
+							div.col-md-10
+								input.form-control(type="password", placeholder="Password", name="password" required)
+						div.modal-footer
+							button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+							button.btn.bg-orange.btn-flat(type="submit") Sign In
+
+	div#student-register-form.modal.fade(tabindex="-1", role="dialog", aria-labelledby="student-register-form-label", aria-hidden="true")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+					h4#student-register-form-label.modal-title Register New Membership
+				div.modal-body
+					form.form-horizontal(method="post", action="/studentregister")
+						div.form-group
+							label.col-sm-2.control-label First name
+							div.col-md-10
+								input.form-control(type="text", placeholder="First name", name="firstName" required)
+						div.form-group
+							label.col-sm-2.control-label Last name
+							div.col-md-10
+								input.form-control(type="text", placeholder="Last name", name="lastName" required)
+						div.form-group
+							label.col-sm-2.control-label Email
+							div.col-md-10
+								input.form-control(type="email", placeholder="Email", name="email" required)
+						div.form-group
+							label.col-sm-2.control-label Contact no.
+							div.col-md-10
+								input.form-control(type="number", placeholder="Contact no.", name="contactNo", maxlength="10", min="7000000000" required)
+						div.form-group
+							label.col-sm-2.control-label Password
+							div.col-md-10
+								input.form-control(type="password", placeholder="Password", name="password" required)
+						div.modal-footer
+							button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+							button.btn.bg-orange.btn-flat(type="submit") Sign me up

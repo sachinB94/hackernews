@@ -1,0 +1,80 @@
+//- div.col-md-12.row.margin-top-20(style="background-color:#333; padding-top:10px; position:relative; bottom:0;")
+//- 	div.col-md-12
+//- 		div.col-md-3.text-center
+//- 			a(href="/" style="font-size:20px; color:#999;") Rentola
+//- 		div.col-md-7.text-center
+//- 			div.col-md-4
+//- 				a(href="#" data-toggle="modal" data-target="#about") About us
+//- 			div.col-md-4
+//- 				a(href="#" data-toggle="modal" data-target="#vision") Our vision
+//- 			div.col-md-4
+//- 				a(href="#" data-toggle="modal" data-target="#contact") Contact us
+//- 	div.col-md-12.text-center
+//- 		small(style="color:#666;") Copyright © 2014 Rentola.All rights reserved.
+
+link(rel='stylesheet', href='/stylesheets/footer.css')
+
+//- a.footer-link(href="#")
+//- 	div.footer-icon
+//- 		i.fa.fa-lg.fa-gear
+
+//- div.footer-block.display-none
+//- 	div.col-md-10
+//- 		a(href="#" data-toggle="modal" data-target="#about") About us
+//- 	div.col-md-10
+//- 		a(href="#" data-toggle="modal" data-target="#vision") Our vision
+//- 	div.col-md-10
+//- 		a(href="#" data-toggle="modal" data-target="#contact") Contact us
+//- 	div.col-md-10
+//- 		small(style="color:#666;") Copyright © 2014 Rentola.All rights reserved.
+
+div.col-md-4.footer-block
+	div.row.text-center
+		div.col-md-4
+			a.footer-link(href="#" data-toggle="modal" data-target="#about") About us
+		div.col-md-4
+			a.footer-link(href="#" data-toggle="modal" data-target="#vision") Our vision
+		div.col-md-4
+			a.footer-link(href="#" data-toggle="modal" data-target="#contact") Contact us
+	div.row.text-center
+		small(style="color:#666;") Copyright © 2014 Rentola.All rights reserved.
+
+
+div#about.modal.fade(tabindex="-1", role="dialog", aria-labelledby="about-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#about-label.modal-title About us
+			div.modal-body
+				
+			div.modal-footer
+				button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+
+div#vision.modal.fade(tabindex="-1", role="dialog", aria-labelledby="vision-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#vision-label.modal-title Our Vision
+			div.modal-body
+				
+			div.modal-footer
+				button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+
+div#contact.modal.fade(tabindex="-1", role="dialog", aria-labelledby="contact-label", aria-hidden="true")
+	div.modal-dialog
+		div.modal-content
+			div.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only Close
+				h4#contact-label.modal-title Contact us
+			div.modal-body
+				
+			div.modal-footer
+				button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close

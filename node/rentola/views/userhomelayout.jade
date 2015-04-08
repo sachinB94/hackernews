@@ -1,0 +1,106 @@
+include layout
+
+link(rel='stylesheet', href='/stylesheets/userhome.css')
+
+div.row
+	div.col-md-12
+		nav.navbar.navbar-inverse.navbar-fixed-top(role="navigation")
+			div.container-fluid
+				div.navbar-header
+					button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-collapse")
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="/") Rentola
+				div.collapse.navbar-collapse#navbar-collapse
+					ul.nav.navbar-nav
+						li
+							a(href="/")
+								button.btn.btn-success.btn-flat.btn-sm Home
+						li.dropdown
+							a.dropdown-toggle(href="#", data-toggle="dropdown")
+								button.btn.btn-info.btn-flat.btn-sm
+									i.glyphicon.glyphicon-user
+									span   #{user.firstName} #{user.lastName}
+										i.caret
+							ul.dropdown-menu
+								li.text-center
+									a.inactive-link(href="#")
+										i.fa.fa-fw.fa-user
+										| #{user.firstName} #{user.lastName}
+								li.text-center
+									a.inactive-link(href="#")
+										i.fa.fa-fw.fa-envelope
+										| #{user.email}
+								li.text-center
+									a.inactive-link(href="#")
+										i.fa.fa-fw.fa-phone
+										| #{user.contactNo}
+								li.text-center
+									a(href="#", data-toggle="modal" data-target="#edit-form")
+										button.btn.btn-default.btn-flat Update Profile
+								li.text-center
+									a(href="#", data-toggle="modal" data-target="#password-form")
+										button.btn.btn-default.btn-flat Change Password
+						if isStudent === true
+							li
+								a(href="/studenthome")
+									button.btn.btn-flat.btn-primary.btn-sm Favourites
+						if isOwner === true
+							li
+								a(href="/userhome/ownerinbox")
+									i.fa.fa-envelope(data-toggle="tooltip", data-placement="bottom", data-original-title="You have #{messageCount} unread message(s)")
+										span.label.label-success #{messageCount}
+
+					a(href="/logout")
+						button.logout-button.btn.bg-orange.btn-flat.btn-sm.navbar-right(data-toggle="tooltip", data-placement="bottom", data-original-title="Going away?") Logout
+
+	
+	div#edit-form.modal.fade(tabindex="-1", role="dialog", aria-labelledby="edit-form-label", aria-hidden="true")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+					h4#edit-form-label.modal-title Update Profile
+				div.modal-body
+					form#updateProfileForm.form-horizontal(method="post", action="/updateprofile")
+						div.form-group
+							label.col-sm-2.control-label First name
+							div.col-md-10
+								input.form-control(type="text", placeholder="First name", name="firstName", value=user['firstName'] required)
+						div.form-group
+							label.col-sm-2.control-label Last name
+							div.col-md-10
+								input.form-control(type="text", placeholder="Last name", name="lastName", value=user['lastName'] required)
+						div.form-group
+							label.col-sm-2.control-label Email
+							div.col-md-10
+								input.form-control(type="email", placeholder="Email", name="email", value=user['email'] required)
+						div.form-group
+							label.col-sm-2.control-label Contact no.
+							div.col-md-10
+								input.form-control(type="number", placeholder="Contact no.", name="contactNo", maxlength="10", min="7000000000", value=user['contactNo'] required)
+						div.modal-footer
+							button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+							button.btn.btn-success.btn-flat(type="submit") Update Profile
+	
+	div#password-form.modal.fade(tabindex="-1", role="dialog", aria-labelledby="password-form-label", aria-hidden="true")
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close(type="button", data-dismiss="modal")
+						span(aria-hidden="true") &times;
+						span.sr-only Close
+					h4#password-form-label.modal-title Change Password
+				div.modal-body
+					form#changePasswordForm.form-horizontal(method="post", action="/changepassword")
+						div.form-group
+							label.col-sm-2.control-label New Password
+							div.col-md-10
+								input.form-control(type="text", placeholder="New Password", name="password" required)
+						div.modal-footer
+							button.btn.btn-default.btn-flat(type="button", data-dismiss="modal") Close
+							button.btn.btn-success.btn-flat(type="submit") Change Password

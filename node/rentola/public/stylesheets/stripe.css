@@ -1,0 +1,25 @@
+
+.type-stripe-small {
+	position: absolute;
+	top: 25px;
+	right: 0;
+	-ms-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	height: 0;
+}
+
+.type-stripe-big {
+	position: absolute;
+	top: 150px;
+	right: 0px;
+	-ms-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	border-left: 30px solid transparent;
+	border-right: 30px solid transparent;
+	height: 0;
+	font-size: 20px;
+}

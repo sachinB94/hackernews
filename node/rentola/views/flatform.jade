@@ -1,0 +1,61 @@
+include userhomelayout.jade
+
+div.col-md-5(style="margin-bottom:60px;")
+	h3 List a flat
+	h6
+		i ...Just a couple more details to go...
+	form.form-horizontal(role="form", method="post", enctype="multipart/form-data", action="/postlisting")
+		div.form-group
+			label.col-md-2.control-label Type*
+			div.col-md-10
+				select.form-control(name="bhk" required)
+					option(value="1") 1 BHK
+					option(value="2") 2 BHK
+					option(value="3") 3 BHK
+					option(value="4") 4 BHK
+					option(value="5") 5 BHK
+					option(value="6") 6 BHK
+		div.form-group
+			label.col-md-2.control-label Rent*
+			div.col-md-4
+				input.form-control(type="number", placeholder="Rent", name="rent0", min="0" required)
+			div.col-md-6
+				label.radio-inline
+					input(type="radio", name="rentType0", value="yearly" checked)
+					|  Yearly
+				label.radio-inline
+					input(type="radio", name="rentType0", value="monthly")
+					|  Monthly
+		div.form-group
+			label.col-md-2.control-label Bathrooms*
+			div.col-md-7
+				input.form-control(type="number", placeholder="Number of Bathrooms", name="noBathroom", min="0" required)
+			div.col-md-3
+				label.checkbox-inline 
+				input(type="checkbox", name="attachedBathroom", value='1')
+				|  Attached
+		div.form-group
+			label.col-md-2.control-label Floor
+			div.col-md-10
+				input.form-control(type="number", placeholder="(Ground = 0)", name="floor", min="0")
+		div.form-group
+			label.col-md-2.control-label Description
+			div.col-md-10
+				textarea.form-control(rows="3", maxlength="200", placeholder="(max characters: 200)" name="description")
+		div.form-group
+			label.col-md-2.control-label Contact*
+			div.col-md-10
+				input.form-control(type="number", placeholder="Contact No.", name="contactNo", min="7000000000", maxlength="10", value=user['contactNo'] required)
+		-for (var i=0 ; i<5 ; ++i) {
+		div.form-group
+			label.col-md-2.control-label Image #{i+1}
+			div.col-md-10
+				input.form-control(type="file", name="image")
+		-}
+		button.btn.btn-success.btn-flat.pull-right(type="submit") Submit
+	a.pull-right(href="user.home")
+		button.btn.btn-default.btn-flat Back
+
+<script src='/javascripts/userhome.js'></script>
+
+include footer.jade

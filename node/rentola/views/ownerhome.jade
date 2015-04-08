@@ -1,0 +1,121 @@
+include userhomelayout.jade
+
+include commonform.jade
+
+include ownerlisting.jade
+
+include footer.jade
+
+
+	//- div.margin-top-20.col-md-12.pull-right
+	//- 	a.btn.btn-primary.btn-block(href="/") Home
+
+	//- div.relative-top-20.col-md-12.pull-right
+	//- 	a.btn.btn-success.btn-block(href="/seepost") See your Posts
+
+	//- div.pricing.relative-top-40.margin-0-auto.form-type-selection
+	//- 	ul
+	//- 		a.hostel-link.col-md-4(href="#")
+	//- 			li.hostel-unit.unit.price-primary
+	//- 				div.price-title
+	//- 					h3 Hostel
+	//- 				div.price-body
+	//- 					h4 Hostel image
+	//- 		a.pg-link.col-md-4(href="#")
+	//- 			li.pg-unit.unit.price-success
+	//- 				div.price-title
+	//- 					h3 P.G.
+	//- 				div.price-body
+	//- 					h4 P.G. image
+	//- 		a.flat-link.col-md-4(href="#")
+	//- 			li.flat-unit.unit.price-warning
+	//- 				div.price-title
+	//- 					h3 Flat
+	//- 				div.price-body
+	//- 					h4 Flat image
+
+	//- div.margin-0-auto.post-form
+	//- 	div.hostel-form.display-none
+	//- 		form.form-horizontal(method="post", action="login")
+	//- 			input.form-control.input-lg(type="text", placeholder="Name", name="name" required)
+	//- 			input.form-control.input-lg(type="text", placeholder="Address", name="address" required)
+	//- 			//- drop down locality rentola_static
+	//- 			input.form-control.input-lg(type="text", placeholder="Name", name="name" required)
+	//- 			input.form-control.input-lg(type="password", placeholder="Password", name="password" required)
+	//- 			button.btn.btn-primary.btn-block hostel
+
+	//- 	div.pg-form.display-none
+	//- 		form.form-horizontal(method="post", action="login")
+	//- 			input.form-control.input-lg(type="email", placeholder="Email", name="email" required)
+	//- 			input.form-control.input-lg(type="password", placeholder="Password", name="password" required)
+	//- 			button.btn.btn-success.btn-block pg
+		
+	//- 	div.flat-form.display-none
+	//- 		form.form-horizontal(method="post", action="ownerpost/flat")
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Name*
+	//- 				div.col-md-10
+	//- 					input.form-control.input-lg(type="text", placeholder="Name", name="name" required)
+				//- div.form-group
+				//- 	label.col-md-2.control-label Address*
+				//- 	div.col-md-10
+				//- 		input.form-control.input-lg(type="text", placeholder="Address", name="address" required)
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Locality*
+	//- 				div.col-md-10
+	//- 					select.form-control.input-lg(name="locality" required)
+	//- 						each location in locality
+	//- 							option(value= "#{location._id}")= location['name']
+				//- div.form-group
+				//- 	label.col-md-2.control-label Rent*
+				//- 	div.col-md-6
+				//- 		input.form-control.input-lg(type="number", placeholder="Rent(Rs.)", name="rent", min="0" required)
+				//- 	strong.col-md-2 Yearly
+				//- 		input.iradio_flat(type="radio", name="rentType", value="year" checked)
+				//- 	strong.col-md-2 Monthly
+				//- 		input.iradio_flat(type="radio", name="rentType", value="month")
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Flat specifications*
+	//- 				div.col-md-10
+	//- 					select.form-control.input-lg(name="bhk" required)
+	//- 						option(value="1") 1 BHK
+	//- 						option(value="2") 2 BHK
+	//- 						option(value="3") 3 BHK
+	//- 						option(value="4") 4 BHK
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label No. of Bathrooms*
+	//- 				div.col-md-8
+	//- 					input.form-control.input-lg(type="number", placeholder="No. of Bathrooms", name="noBathroom", min="0" required)
+	//- 				strong.col-md-2 Attached  
+	//- 					input.icheckbox_flat(type="checkbox", name="attachedBathroom", value="1")
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Bathroom Type
+	//- 				strong.col-md-3 Indian  
+	//- 					input.icheckbox_flat(type="checkbox", name="indian", value="1")
+	//- 				strong.col-md-3 Western  
+	//- 					input.icheckbox_flat(type="checkbox", name="western", value="1")
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Landlord present
+	//- 				div.col-md-10
+	//- 					input.icheckbox_flat(type="checkbox", name="landlord", value="1")
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Floor No.
+	//- 				div.col-md-10
+	//- 					input.form-control.input-lg(type="number", placeholder="Only number allowed(Ground = 0)", name="floor", min="0")
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Distance from Pari-Chowk
+	//- 				div.col-md-10.input-group
+	//- 					input.form-control.input-lg(type="number", placeholder="Distance from Pari-Chowk", name="distacePariChowk", min="0")
+	//- 					span.input-group-addon km
+	//- 			div.form-group
+	//- 				label.col-md-2.control-label Distance from Jagat Farm
+	//- 				div.col-md-10.input-group
+	//- 					input.form-control.input-lg(type="number", placeholder="Distance from Jagat Farm", name="distaceJagatFarm", min="0")
+	//- 					span.input-group-addon km
+	//- 			div.form-group
+	//- 				strong.col-md-12 Additional information(Max Characters = 200)
+	//- 				div.col-md-12
+	//- 					textarea.form-control(rows="3", cols="109", maxlength="200", name="description")
+	//- 			button.btn.btn-success.btn-block Post the Flat
+
+	<script src='/javascripts/ownerhome.js'></script>

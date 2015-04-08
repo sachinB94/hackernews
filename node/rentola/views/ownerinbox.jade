@@ -1,0 +1,13 @@
+include userhomelayout.jade
+
+if messages.length === 0
+	div.no-unread-message You have no messages in your inbox
+else
+	div.col-md-12.margin-top-20
+		-for (var i=0 ; i<messages.length ; ++i) {
+			if (i+1)%4 === 0
+				div.row
+					include messagelisting.jade
+			else
+				include messagelisting.jade
+		-}
