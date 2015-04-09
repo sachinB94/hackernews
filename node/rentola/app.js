@@ -11,8 +11,8 @@ var qt = require('quickthumb');
 var app = express();
 
 var mongo = require('mongoskin');
-var db_static = mongo.db("mongodb://localhost:27017/rentola_static", {native_parser:true});
-var db = mongo.db("mongodb://localhost:27017/rentola", {native_parser:true});
+var db_static = mongo.db("mongodb://heroku_app35713051:3tnbagiho01qhum02aj3d7k6v6@ds061711.mongolab.com:61711/rentola_static", {native_parser:true});
+var db = mongo.db("mongodb://heroku_app35713051:3tnbagiho01qhum02aj3d7k6v6@ds061611.mongolab.com:61611/rentola", {native_parser:true});
 
 var RedisStore = require("connect-redis")(express);
 var redis = require("redis").createClient();
