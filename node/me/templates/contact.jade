@@ -1,0 +1,34 @@
+section#contact
+  div.container
+    div.row
+      div.col-md-12.text-center
+        h2 Contact Me
+        hr.star-primary
+    div.row
+      div.col-md-8.col-md-offset-2
+        form.contactForm(name="sentMessage" action="/sentMessage" novalidate)
+          div.row.control-group
+            div.form-group.col-xs-12.floating-label-form-group.controls
+              label Name
+              input#name.form-control(type="text" name="name" placeholder="Name" required data-validation-required-message="Please enter your name.")
+              p.help-block.text-danger
+          div.row.control-group
+            div.form-group.col-xs-12.floating-label-form-group.controls
+              label Email Address
+              input#email.form-control(type="email" name="email" placeholder="Email Address" required data-validation-required-message="Please enter your email address." aria-invalid="false")
+              p.help-block.text-danger
+          div.row.control-group
+            div.form-group.col-xs-12.floating-label-form-group.controls
+              label Phone Number
+              input#phone.form-control(type="tel" name="tel" placeholder="Phone Number" required data-validation-required-message="Please enter your phone number.")
+              p.help-block.text-danger
+          div.row.control-group
+            div.form-group.col-xs-12.floating-label-form-group.controls
+              label Message
+              textarea#message.form-control(rows="5" name="message" placeholder="Message" required data-validation-required-message="Please enter a message.")
+              p.help-block.text-danger
+          br
+          div#success
+          div.row
+            div.form-group.col-xs-12
+              button.btn.btn-success.btn-md(type="submit") Send
