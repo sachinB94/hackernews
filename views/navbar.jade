@@ -1,0 +1,79 @@
+.bs-component
+  .navbar.navbar-default
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/')
+        img(src='/images/favicon-32x32.png', style='float:left;')
+        | &nbsp Hacker News
+
+    .navbar-collapse.collapse.navbar-responsive-collapse
+      ul.nav.navbar-nav
+        li
+          a(href='/') Home
+        li
+          a(href='/fresh') Fresh
+        li
+          a(href='/hot') Hot
+        if !login
+          li.dropdown
+            a.dropdown-toggle(href='bootstrap-elements.html', data-target='#', data-toggle='dropdown', aria-expanded='false')
+              | Login
+              b.caret
+            ul.dropdown-menu
+              form#login(method='POST', action='/login')
+                li
+                  input.form-control(type="text", name="username", placeholder='Username')
+                li
+                  input.form-control(type="password", name="password", placeholder='Password')
+                li
+                  .text-center
+                    button.btn.btn-primary.btn-raised(type='submit') Login
+
+          li.dropdown
+            a.dropdown-toggle(href='bootstrap-elements.html', data-target='#', data-toggle='dropdown')
+              | Register
+              b.caret
+            ul.dropdown-menu
+              form#register(method='POST', action='/register')
+                li
+                  input.form-control(type="text", name="username", placeholder='Username')
+                li
+                  input.form-control(type="email", name="email", placeholder='Email')
+                li
+                  input.form-control(type="password", name="password", placeholder='Password')
+                li
+                  .text-center
+                    button.btn.btn-primary.btn-raised(type='submit') Register
+        else
+          li.dropdown
+            a.dropdown-toggle(href='bootstrap-elements.html', date-target='#', data-toggle='dropdown')
+              | Welcome #{currentUser.username}
+              b.caret
+            ul.dropdown-menu
+              li
+                a(href='/logout')
+                  button.btn.btn-primary.btn-raised Logout
+          li.dropdown
+            a.dropdown-toggle(href='bootstrap-elements.html', data-target='#', data-toggle='dropdown')
+              | Submit news
+              b.caret
+            ul.dropdown-menu(style='padding:5px;')
+              .bs-component
+                form#submit-news.form-horizontal(method='POST', action='/submit-news')
+                  .form-group
+                    .col-lg-12
+                      input.form-control(type='text', name='title', placeholder='Title')
+                  .form-group
+                    .col-lg-12
+                      input.form-control(type='text', name='link', placeholder='Link')
+                  .form-group
+                    label.col-lg-2.control-label Description
+                    .col-lg-12
+                      textarea.form-control(name='description', maxlength="140")
+                  .text-center
+                    button.btn.btn-primary.btn-raised(type='submit') Submit
+
+script(src='/javascripts/news/submit.js')

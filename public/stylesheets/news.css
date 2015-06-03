@@ -1,0 +1,43 @@
+.news {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.points-container {
+	float: left;
+}
+
+.points {
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 15px;
+	color: rgba(255,255,255,.84);
+	background: #009688;
+	line-height: 25px;
+}
+
+.date {
+	color: rgba(0,0,0,.54);
+	float: right;
+	padding-top: 7px;
+	font-size: 12px;
+}
+
+.text-container {
+	padding-top: 7px;
+	margin-left: 50px;
+	height: 80px;
+}
+
+.title a {
+	font-size: 23px;
+	color: rgba(0,0,0,.7);
+}
+
+.comment-link {
+	float: right;
+	padding-top: 30px;
+	font-size: 10px;
+}

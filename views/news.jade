@@ -1,0 +1,27 @@
+link(rel='stylesheet', href='stylesheets/news.css')
+
+.row
+  .col-lg-12
+    .bs-component
+      .list-group
+        for newsItem in news
+          .news
+            .date #{newsItem.document.createdAt.substr(0,10)}
+            .comment-link
+              a(href='/comments/#{newsItem.document._id}')
+                i.mdi-communication-comment
+                | &nbsp Comments
+            .points-container
+              a.upvote(href='#{newsItem.document._id}')
+                i.mdi-navigation-expand-less
+              .points #{newsItem.document.points}
+              a.downvote(href='#{newsItem.document._id}')
+                i.mdi-navigation-expand-more
+            .text-container
+              p.title
+                a(href='http://' + '#{newsItem.document.link}') #{newsItem.document.title}
+                | &nbsp by 
+                i #{newsItem.document.postedBy.username}
+              p.description #{newsItem.document.description}
+
+script(src='/javascripts/news/points.js')

@@ -1,0 +1,28 @@
+#submit-comment button {
+	float: right;
+}
+
+.list-group {
+	padding: 20px;
+}
+
+.posted-by b {
+	font-size: 15px;
+	color: #009688;
+}
+
+.posted-by i {
+	font-size: 13px;
+	color: rgba(0,0,0,.54);
+}
+
+.comment {
+	font-size: 13px;
+}
+
+.comment-separator {
+	background: #009688;
+	height: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

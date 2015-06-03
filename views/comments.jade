@@ -1,0 +1,54 @@
+include layout
+
+body
+  include navbar
+
+  link(rel='stylesheet', href='/stylesheets/news.css')
+  link(rel='stylesheet', href='/stylesheets/comments.css')
+
+  .row
+    .col-lg-12
+      .news
+        .date #{news.document.createdAt.substr(0,10)}
+        .points-container
+          a.upvote(href='/#{news.document._id}')
+            i.mdi-navigation-expand-less
+          .points #{news.document.points}
+          a.downvote(href='/#{news.document._id}')
+            i.mdi-navigation-expand-more
+        .text-container
+          p.title
+            a(href='http://' + '#{news.document.link}') #{news.document.title}
+            | &nbsp by 
+            i #{news.document.postedBy.username}
+          p.description #{news.document.description}
+
+  .row
+    if login
+      form#submit-comment.form-horizontal(method='POST', action='/submit-comment')
+        .form-group.col-lg-11
+          label.col-lg-1.control-label Comment:
+          .col-lg-11
+            textarea.form-control(name='comment', maxlength="140")
+        button.btn.btn-primary.btn-raised Submit
+
+    else
+      i(style='margin-left: 20px;') Please login to post comment
+
+  .row
+    .col-lg-12
+      .bs-component
+        .list-group
+          for comment in comments
+            .posted-by 
+              b #{comment.document.postedBy.username}
+              | &nbsp on &nbsp
+              i #{comment.document.createdAt.substr(0, 10)}
+            .comment #{comment.document.comment}
+            div.comment-separator
+
+
+script.
+  var news = '#{news.document._id}';
+script(src='/javascripts/comments/submit.js')
+script(src='/javascripts/news/points.js')
