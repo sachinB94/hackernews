@@ -4,7 +4,7 @@
   "description": "A simple news channel",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "async": "^1.1.0",
