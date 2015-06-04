@@ -41,3 +41,10 @@
 	padding-top: 30px;
 	font-size: 10px;
 }
+
+.news-separator {
+	background: #009688;
+	height: 1px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

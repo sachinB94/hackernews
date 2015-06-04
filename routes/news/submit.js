@@ -7,8 +7,8 @@ module.exports = function(req, res, next) {
   news.set('link', req.body.link);
   news.set('description', req.body.description);
   news.set('postedBy', {
-    _id: User.currentUser().document._id,
-    username: User.currentUser().username
+    _id: User.currentUser(req.session)._id,
+    username: User.currentUser(req.session).username
   });
   news.set('points', 0);
 

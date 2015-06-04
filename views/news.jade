@@ -19,9 +19,10 @@ link(rel='stylesheet', href='stylesheets/news.css')
                 i.mdi-navigation-expand-more
             .text-container
               p.title
-                a(href='http://' + '#{newsItem.document.link}') #{newsItem.document.title}
+                a(href='#{newsItem.document.link}') #{newsItem.document.title}
                 | &nbsp by 
                 i #{newsItem.document.postedBy.username}
               p.description #{newsItem.document.description}
+          .news-separator
 
 script(src='/javascripts/news/points.js')

@@ -7,8 +7,8 @@ module.exports = function(req, res, next) {
   comment.set('comment', req.body.comment);
   comment.set('news', req.body.news);
   comment.set('postedBy', {
-    _id: User.currentUser().document._id,
-    username: User.currentUser().username
+    _id: User.currentUser(req.session)._id,
+    username: User.currentUser(req.session).username
   });
 
   Comments.save(comment, function(err) {

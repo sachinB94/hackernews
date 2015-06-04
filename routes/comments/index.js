@@ -5,7 +5,13 @@ module.exports = function(req, res, next) {
   var Comments = require('../models/comments.js');
   var News = require('../models/news.js');
 
-  if (!User.currentUser() || Object.keys(User.currentUser()).length === 0) {
+  // if (!User.currentUser() || Object.keys(User.currentUser()).length === 0) {
+  //   login = false;
+  // } else {
+  //   login = true;
+  // }
+
+  if (!User.currentUser(req.session)) {
     login = false;
   } else {
     login = true;
@@ -17,7 +23,7 @@ module.exports = function(req, res, next) {
         if (!err) {
           res.render('comments', {
             login: login,
-            currentUser: User.currentUser(),
+            currentUser: User.currentUser(req.session),
             news: news,
             comments: comments
           });

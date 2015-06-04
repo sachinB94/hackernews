@@ -18,7 +18,7 @@ body
             i.mdi-navigation-expand-more
         .text-container
           p.title
-            a(href='http://' + '#{news.document.link}') #{news.document.title}
+            a(href='#{news.document.link}') #{news.document.title}
             | &nbsp by 
             i #{news.document.postedBy.username}
           p.description #{news.document.description}
@@ -45,7 +45,7 @@ body
               | &nbsp on &nbsp
               i #{comment.document.createdAt.substr(0, 10)}
             .comment #{comment.document.comment}
-            div.comment-separator
+            .comment-separator
 
 
 script.

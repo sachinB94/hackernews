@@ -6,7 +6,7 @@ module.exports = function(req, res, next) {
   user.set('email', req.body.email);
   user.set('password', req.body.password);
 
-  User.signUp(user, function(err) {
+  User.signUp(user, req.session, function(err) {
     res.send({ err: err });
   });
 }
