@@ -2,4 +2,4 @@
 A simple news channel
 
 ## Demo
-hackern.herokuapp.com
+http://hackern.herokuapp.com
